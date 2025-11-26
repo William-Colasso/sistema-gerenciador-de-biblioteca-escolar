@@ -40,4 +40,8 @@ public class LivroController {
     public List<Livro> getAll(){
         return livroService.getAll();
     }
+
+    public int buscarDisponiveis(String titulo) {
+        return livroService.countByTituloAndDisponivelTrue(titulo);
+    }
 }

@@ -36,4 +36,8 @@ public class EmprestimoController {
     public List<Emprestimo> getAll(){
         return emprestimoService.getAll();
     }
+
+    public List<Emprestimo> buscarPendenciasPorAluno(String matricula) {
+        return emprestimoService.alunoTemPendencias(matricula);
+    }
 }

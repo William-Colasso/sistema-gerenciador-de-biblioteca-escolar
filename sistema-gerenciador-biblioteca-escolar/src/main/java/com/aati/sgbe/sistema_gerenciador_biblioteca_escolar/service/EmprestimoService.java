@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.model.Emprestimo;
+import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.repository.AlunoRepository;
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.repository.EmprestimoRepository;
 
 @Service
 public class EmprestimoService {
+
+    @Autowired
+    AlunoRepository alunoRepository;
     @Autowired
     EmprestimoRepository emprestimoRepository;
 
@@ -35,5 +39,9 @@ public class EmprestimoService {
 
     public List<Emprestimo> getAll(){
         return emprestimoRepository.findAll();
+    }
+
+    public List<Emprestimo> alunoTemPendencias(String matricula){
+        return emprestimoRepository.findByAlunoAndIsDevolvidoFalse(alunoRepository.findByMatricula(matricula));
     }
 }
