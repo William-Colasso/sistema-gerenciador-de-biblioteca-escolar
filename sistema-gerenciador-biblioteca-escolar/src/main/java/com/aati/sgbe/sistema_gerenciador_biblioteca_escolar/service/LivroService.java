@@ -6,12 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.model.Livro;
+import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.repository.EmprestimoRepository;
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.repository.LivroRepository;
 
 @Service
 public class LivroService {
+
     @Autowired
     LivroRepository livroRepository;
+
+    @Autowired
+    EmprestimoRepository emprestimoRepository;
 
     public void create(Livro livro){
         livroRepository.save(livro);
@@ -40,5 +45,12 @@ public class LivroService {
 
     public List<Livro> getAll(){
         return livroRepository.findAll();
+    }
+
+    public int countByTituloAndDisponivelTrue(String titulo){
+        int qtd = 0;
+        long temp = livroRepository.findByTitulo(titulo).getQuantidade() - emprestimoRepository.countByLivroAndIsDevolvidoFalse(livroRepository.findByTitulo(titulo));
+        qtd = Integer.parseInt(String.valueOf(temp));
+        return qtd;
     }
 }
