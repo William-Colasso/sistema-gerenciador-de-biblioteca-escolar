@@ -7,7 +7,7 @@ Este projeto é um sistema completo para gerenciamento de bibliotecas escolares,
 ## 👥 Equipe & Responsabilidades
 
 ### **William-Colasso**
-- Implementação da **feature/emprestimos**
+- Implementação da **feature/relatorios**
 - Desenvolvimento das regras de negócio de:
   - Empréstimo e devolução de livros
   - Controle de disponibilidade
@@ -23,13 +23,11 @@ Este projeto é um sistema completo para gerenciamento de bibliotecas escolares,
 - Implementação da **feature/cadastro-livros**
 - Modelagem da entidade Livro
 - Tela Swing de gerenciamento do acervo
-- Upload de imagens convertido para Base64
 - Integração com o backend via Spring + JPA
 
 ### **kalebehsilva-tech**
-- Contribuições gerais e suporte ao desenvolvimento
+- Implementação da **feature/emprestimos**
 - Participação na estruturação inicial e testes
-- Auxílio na integração entre camadas
 
 ### **Vinícius Pedro Andreazza**
 - Implementação da **feature/administracao**
@@ -46,8 +44,8 @@ Este projeto é um sistema completo para gerenciamento de bibliotecas escolares,
 | **feature/administracao** | Vinícius Pedro Andreazza | Módulo administrativo |
 | **feature/cadastro-alunos** | Eike Teodoro | Cadastro e gestão de alunos |
 | **feature/cadastro-livros** | Luciano Zumach | Cadastro e gestão de livros |
-| **feature/emprestimos** | William-Colasso | Empréstimos e devoluções |
-| **feature/relatorios** | (não informado) | Início da geração de relatórios |
+| **feature/emprestimos** | Kalebe Henrique Silva | Empréstimos e devoluções |
+| **feature/relatorios** | William-Colasso | Início da geração de relatórios |
 
 ---
 
