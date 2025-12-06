@@ -13,35 +13,35 @@ import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.repository.Emprestim
 public class EmprestimoService {
 
     @Autowired
-    AlunoRepository alunoRepository;
+    private AlunoRepository alunoRepository;
     @Autowired
-    EmprestimoRepository emprestimoRepository;
+    private EmprestimoRepository emprestimoRepository;
 
-    public void create(Emprestimo emprestimo){
+    public void create(Emprestimo emprestimo) {
         emprestimoRepository.save(emprestimo);
     }
 
-    public void delete(Emprestimo emprestimo){
+    public void delete(Emprestimo emprestimo) {
         emprestimoRepository.delete(emprestimo);
     }
 
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         emprestimoRepository.deleteById(id);
     }
 
-    public void update(Emprestimo emprestimo){
+    public void update(Emprestimo emprestimo) {
         emprestimoRepository.save(emprestimo);
     }
 
-    public Emprestimo getById(Long id){
+    public Emprestimo getById(Long id) {
         return emprestimoRepository.findById(id).get();
     }
 
-    public List<Emprestimo> getAll(){
+    public List<Emprestimo> getAll() {
         return emprestimoRepository.findAll();
     }
 
-    public List<Emprestimo> alunoTemPendencias(String matricula){
+    public List<Emprestimo> alunoTemPendencias(String matricula) {
         return emprestimoRepository.findByAlunoAndIsDevolvidoFalse(alunoRepository.findByMatricula(matricula));
     }
 }

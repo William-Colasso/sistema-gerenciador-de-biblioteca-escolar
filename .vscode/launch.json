@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SistemaGerenciadorBibliotecaEscolarApplication<sistema-gerenciador-biblioteca-escolar>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.SistemaGerenciadorBibliotecaEscolarApplication",
+            "projectName": "sistema-gerenciador-biblioteca-escolar",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

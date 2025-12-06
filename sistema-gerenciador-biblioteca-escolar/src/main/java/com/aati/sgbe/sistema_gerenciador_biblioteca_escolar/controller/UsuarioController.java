@@ -11,7 +11,7 @@ import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.service.UsuarioServi
 @Controller
 public class UsuarioController {
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     public void create(Usuario usuario){
         usuarioService.create(usuario);

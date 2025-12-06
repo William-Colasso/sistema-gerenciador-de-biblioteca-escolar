@@ -8,13 +8,10 @@ public class LoginFrame extends AbstractFrame {
 
     public LoginFrame() {
         super("Login");
-        setLayout(new GridLayout());
-        setSize(400, 300);
+        setLayout(new GridLayout(1,1));
+        setSize(600, 450);
     }
 
-    @Override
-    protected void initComponents() {
-        
-    }
-
+ 
+    
 }

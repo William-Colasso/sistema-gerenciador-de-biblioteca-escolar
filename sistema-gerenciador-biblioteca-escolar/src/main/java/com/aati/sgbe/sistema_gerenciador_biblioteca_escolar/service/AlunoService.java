@@ -11,7 +11,7 @@ import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.repository.AlunoRepo
 @Service
 public class AlunoService {
     @Autowired
-    AlunoRepository alunoRepository;
+    private AlunoRepository alunoRepository;
 
     public void create(Aluno aluno){
         alunoRepository.save(aluno);

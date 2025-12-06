@@ -11,29 +11,29 @@ import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.service.EmprestimoSe
 @Controller
 public class EmprestimoController {
     @Autowired
-    EmprestimoService emprestimoService;
+    private EmprestimoService emprestimoService;
 
-    public void create(Emprestimo livro){
+    public void create(Emprestimo livro) {
         emprestimoService.create(livro);
     }
 
-    public void delete(Emprestimo livro){
+    public void delete(Emprestimo livro) {
         emprestimoService.delete(livro);
     }
 
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         emprestimoService.deleteById(id);
     }
 
-    public void update(Emprestimo livro){
+    public void update(Emprestimo livro) {
         emprestimoService.update(livro);
     }
 
-    public Emprestimo getById(Long id){
+    public Emprestimo getById(Long id) {
         return emprestimoService.getById(id);
     }
 
-    public List<Emprestimo> getAll(){
+    public List<Emprestimo> getAll() {
         return emprestimoService.getAll();
     }
 

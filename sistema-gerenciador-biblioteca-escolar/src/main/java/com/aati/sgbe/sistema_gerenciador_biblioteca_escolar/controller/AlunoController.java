@@ -11,7 +11,7 @@ import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.service.AlunoService
 @Controller
 public class AlunoController {
     @Autowired
-    AlunoService alunoService;
+    private AlunoService alunoService;
 
     public void create(Aluno aluno){
         alunoService.create(aluno);

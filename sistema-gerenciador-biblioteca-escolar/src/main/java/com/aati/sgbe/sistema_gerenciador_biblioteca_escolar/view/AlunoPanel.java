@@ -1,23 +1,9 @@
 package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.HeadlessException;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.List;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +24,7 @@ public class AlunoPanel extends JPanel {
     private JTextField txtTurma;
 
     private JTable tabelaAlunos;
-    private final DefaultTableModel tableModel;
+    private DefaultTableModel tableModel;
 
     private Long alunoEditandoId = null;
 
@@ -113,8 +99,7 @@ public class AlunoPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
         add(botoes, BorderLayout.SOUTH);
 
-        // Carrega tabela ao iniciar
-        SwingUtilities.invokeLater(this::carregarTabela);
+        carregarTabela();
     }
 
     private void salvarOuAtualizarAluno(ActionEvent e) {
@@ -145,7 +130,7 @@ public class AlunoPanel extends JPanel {
             limparCampos();
             carregarTabela();
 
-        } catch (HeadlessException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erro ao salvar/atualizar aluno: " + ex.getMessage());
         }

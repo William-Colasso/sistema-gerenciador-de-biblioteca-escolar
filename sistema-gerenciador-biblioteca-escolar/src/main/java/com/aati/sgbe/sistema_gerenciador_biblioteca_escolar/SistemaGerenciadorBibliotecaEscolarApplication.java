@@ -1,10 +1,7 @@
 package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar;
 
-
-
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
+import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.config.FlatLafConfig;
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.AuthPanel;
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.MainFrame;
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.frames.LoginFrame;
@@ -29,13 +27,13 @@ public class SistemaGerenciadorBibliotecaEscolarApplication {
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
 
-        UIManager.setLookAndFeel(new FlatMacLightLaf());
+        FlatLafConfig.setLookAndFeel(new FlatMacLightLaf());
 
         System.setProperty("java.awt.headless", "false");
 
         SpringApplication.run(SistemaGerenciadorBibliotecaEscolarApplication.class, args);
-    	
-	}
+
+    }
 
     // Executa automaticamente quando o Spring terminar de iniciar
     @EventListener(ApplicationReadyEvent.class)

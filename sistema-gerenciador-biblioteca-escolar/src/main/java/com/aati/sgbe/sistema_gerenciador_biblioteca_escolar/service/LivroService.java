@@ -49,7 +49,12 @@ public class LivroService {
 
     public int countByTituloAndDisponivelTrue(String titulo){
         int qtd = 0;
-        long temp = livroRepository.findByTitulo(titulo).getQuantidade() - emprestimoRepository.countByLivroAndIsDevolvidoFalse(livroRepository.findByTitulo(titulo));
+        Livro livroBuscado = livroRepository.findByTitulo(titulo);
+        if(livroBuscado == null){
+            return 0;
+        }
+
+        long temp = livroBuscado.getQuantidade() - emprestimoRepository.countByLivroAndIsDevolvidoFalse(livroBuscado);
         qtd = Integer.parseInt(String.valueOf(temp));
         return qtd;
     }

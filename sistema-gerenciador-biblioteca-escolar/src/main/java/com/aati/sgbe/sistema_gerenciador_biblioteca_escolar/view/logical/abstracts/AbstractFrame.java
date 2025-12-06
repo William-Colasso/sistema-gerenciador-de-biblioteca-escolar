@@ -1,5 +1,6 @@
 package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.logical.abstracts;
 
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
@@ -29,5 +30,16 @@ public abstract class AbstractFrame extends JFrame {
 
     }
 
-    protected abstract void initComponents();
+      
+
+    public AbstractFrame( ) {
+        setTitle("title");
+        setLayout(null);
+        
+        
+
+    }
+
+
+    
 }

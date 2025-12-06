@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.controller.EmprestimoController;
@@ -30,13 +31,14 @@ public class ConsultaLivroAlunoPanel extends JPanel {
     private JTable tabelaPendencias;
     private DefaultTableModel modeloTabela;
 
+    @Autowired
     private LivroController livroController;
+    @Autowired
     private EmprestimoController emprestimoController;
 
     
     public ConsultaLivroAlunoPanel(LivroController livroController, EmprestimoController emprestimoController) {
-        this.livroController = livroController;
-        this.emprestimoController = emprestimoController;
+  
         criarTela();
     }
 
@@ -91,7 +93,8 @@ public class ConsultaLivroAlunoPanel extends JPanel {
     private void buscarLivro() {
         String titulo = txtTitulo.getText();
         int quantidade = livroController.buscarDisponiveis(titulo);
-        lblResultadoLivro.setText("Quantidade disponível: " + quantidade);
+
+        lblResultadoLivro.setText(quantidade <=0 ? "Livro não existente ou sem estoque" : "Quantidade disponível: " + quantidade);
     }
 
     private void buscarPendenciasAluno() {
