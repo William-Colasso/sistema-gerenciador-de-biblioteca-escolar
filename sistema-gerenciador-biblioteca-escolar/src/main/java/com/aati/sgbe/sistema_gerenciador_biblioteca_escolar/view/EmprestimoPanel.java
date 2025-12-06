@@ -3,6 +3,8 @@ package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.swing.*;
@@ -58,6 +60,9 @@ public class EmprestimoPanel extends JPanel {
         cbLivro = new JComboBox<>();
 
         txtDataEmprestimo = new JTextField();
+        
+        txtDataEmprestimo.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
         txtDataDevolucao = new JTextField();
         checkDevolvido = new JCheckBox();
 
@@ -95,8 +100,7 @@ public class EmprestimoPanel extends JPanel {
 
         // Tabela
         tableModel = new DefaultTableModel(
-                new Object[]{"ID", "Aluno", "Livro", "Data Empréstimo", "Data Devolução", "Devolvido"}, 0
-        ) {
+                new Object[] { "ID", "Aluno", "Livro", "Data Empréstimo", "Data Devolução", "Devolvido" }, 0) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 return false;
@@ -137,8 +141,10 @@ public class EmprestimoPanel extends JPanel {
         List<Aluno> alunos = alunoController.getAll();
         List<Livro> livros = livroController.getAll();
 
-        for (Aluno a : alunos) cbAluno.addItem(a.getMatricula());
-        for (Livro l : livros) cbLivro.addItem(l.getTitulo());
+        for (Aluno a : alunos)
+            cbAluno.addItem(a.getMatricula());
+        for (Livro l : livros)
+            cbLivro.addItem(l.getTitulo());
     }
 
     // -----------------------------------------------------
@@ -152,14 +158,14 @@ public class EmprestimoPanel extends JPanel {
         List<Emprestimo> lista = emprestimoController.getAll();
 
         for (Emprestimo emp : lista) {
-            if(!emp.isDevolvido()){
-                tableModel.addRow(new Object[]{
-                    emp.getId(),
-                    emp.getAluno().getNome(),
-                    emp.getLivro().getTitulo(),
-                    sdf.format(emp.getDataEmprestimo()),
-                    sdf.format(emp.getDataDevolucao()),
-                    emp.isDevolvido() ? "Devolvido" : "Não Devolvido"
+            if (!emp.isDevolvido()) {
+                tableModel.addRow(new Object[] {
+                        emp.getId(),
+                        emp.getAluno().getNome(),
+                        emp.getLivro().getTitulo(),
+                        sdf.format(emp.getDataEmprestimo()),
+                        sdf.format(emp.getDataDevolucao()),
+                        emp.isDevolvido() ? "Devolvido" : "Não Devolvido"
                 });
             }
         }
@@ -205,7 +211,8 @@ public class EmprestimoPanel extends JPanel {
     // -----------------------------------------------------
     private void carregarParaEdicao() {
         int row = tabelaEmprestimos.getSelectedRow();
-        if (row == -1) return;
+        if (row == -1)
+            return;
 
         Long id = (Long) tabelaEmprestimos.getValueAt(row, 0);
 

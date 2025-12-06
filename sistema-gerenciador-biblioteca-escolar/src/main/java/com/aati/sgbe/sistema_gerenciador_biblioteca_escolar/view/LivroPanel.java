@@ -129,10 +129,8 @@ public class LivroPanel extends JPanel {
             livro.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
 
             try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate localDate = LocalDate.parse(txtAno.getText(), formatter);
-                Date dataPublicacao = Date.valueOf(localDate);
-                livro.setAno(dataPublicacao);
+                
+                livro.setAno(Long.valueOf(txtAno.getText()));
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Ano inválido. Digite um número inteiro.");
                 return;
@@ -209,6 +207,7 @@ public class LivroPanel extends JPanel {
     }
 
     private void limparCampos() {
+        txtAutor.setText("");
         txtTitulo.setText("");
         txtQuantidade.setText("");
         txtEditora.setText("");

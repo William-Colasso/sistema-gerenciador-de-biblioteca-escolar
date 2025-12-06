@@ -1,6 +1,5 @@
 package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.model;
 
-import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ public class Livro {
 
     private String editora;
 
-    private Date ano;
+    private Long ano;
 
     private int quantidade;
 
@@ -57,11 +56,11 @@ public class Livro {
         this.genero = genero;
     }
 
-    public Date getAno() {
+    public Long getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(Long ano) {
         this.ano = ano;
     }
 

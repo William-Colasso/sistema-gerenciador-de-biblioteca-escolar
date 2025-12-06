@@ -11,33 +11,35 @@ import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.service.LivroService
 @Controller
 public class LivroController {
     @Autowired
-    LivroService livroService;
+    private LivroService livroService;
 
-    public void create(Livro livro){
+    
+
+    public void create(Livro livro) {
         livroService.create(livro);
     }
 
-    public void delete(Livro livro){
+    public void delete(Livro livro) {
         livroService.delete(livro);
     }
 
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         livroService.deleteById(id);
     }
 
-    public void update(Livro livro){
+    public void update(Livro livro) {
         livroService.update(livro);
     }
 
-    public Livro getById(Long id){
+    public Livro getById(Long id) {
         return livroService.getById(id);
     }
 
-    public Livro getByTitulo(String titulo){
+    public Livro getByTitulo(String titulo) {
         return livroService.getByTitulo(titulo);
     }
 
-    public List<Livro> getAll(){
+    public List<Livro> getAll() {
         return livroService.getAll();
     }
 

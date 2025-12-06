@@ -11,7 +11,7 @@ import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.repository.UsuarioRe
 @Service
 public class UsuarioService {
     @Autowired
-    UsuarioRepository usuarioRepository;
+    private UsuarioRepository usuarioRepository;
 
     public Usuario validarLogin(String nome, String senha) {
         Usuario user = usuarioRepository.findByNome(nome);
@@ -21,15 +21,15 @@ public class UsuarioService {
         return null;
     }
 
-    public void create(Usuario usuario){
+    public void create(Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 
-    public Usuario getById(Long id){
+    public Usuario getById(Long id) {
         return usuarioRepository.findById(id).get();
     }
 
-    public List<Usuario> getAll(){
+    public List<Usuario> getAll() {
         return usuarioRepository.findAll();
     }
 }

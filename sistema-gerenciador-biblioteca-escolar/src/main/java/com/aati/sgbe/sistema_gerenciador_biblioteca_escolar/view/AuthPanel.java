@@ -1,53 +1,65 @@
 package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.controller.UsuarioController;
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.model.Usuario;
-import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.service.UsuarioService;
+import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.logical.custom.panel.MigPanel;
+
+import net.miginfocom.swing.MigLayout;
 
 @Component
-public class AuthPanel extends JPanel {
+public class AuthPanel extends MigPanel {
 
-    private final UsuarioController usuarioController;
+    @Autowired
+    private UsuarioController usuarioController;
 
     private CardLayout cardLayout;
     private JPanel cards;
 
-    @Autowired
-    public AuthPanel(UsuarioController usuarioController) {
-        this.usuarioController = usuarioController;
+    public AuthPanel() {
+        super("fill, insets 20");
 
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
 
-        JPanel loginPanel = createLoginPanel();
-        JPanel cadastroPanel = createCadastroPanel();
+        MigPanel loginPanel = createLoginPanel();
+        MigPanel cadastroPanel = createCadastroPanel();
 
         cards.add(loginPanel, "login");
         cards.add(cadastroPanel, "cadastro");
 
-        setLayout(new BorderLayout());
-        add(cards, BorderLayout.CENTER);
+        setLayout(new MigLayout("fill"));
+        add(cards, "grow, push");
     }
 
-    private JPanel createLoginPanel() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+    private MigPanel createLoginPanel() {
+        MigPanel panel = new MigPanel(
+            "wrap 2, align center, gapy 15",
+            "[right][250!]",
+            ""
+        );
 
         JLabel lblTitle = new JLabel("Login");
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 24));
+        lblTitle.setFont(new Font("Arial", Font.BOLD, 28));
 
         JLabel lblNome = new JLabel("Nome:");
-        JTextField txtNome = new JTextField(15);
+        JTextField txtNome = new JTextField();
 
         JLabel lblSenha = new JLabel("Senha:");
-        JPasswordField txtSenha = new JPasswordField(15);
+        JPasswordField txtSenha = new JPasswordField();
 
         JButton btnEntrar = new JButton("Entrar");
         JButton btnTelaCadastro = new JButton("Não possui conta? Cadastrar");
@@ -59,7 +71,7 @@ public class AuthPanel extends JPanel {
 
             if (usuario != null) {
                 JOptionPane.showMessageDialog(this, "Login OK!");
-                firePropertyChange("loginSuccess", false, true); //evento customizado
+                firePropertyChange("loginSuccess", false, true);
             } else {
                 JOptionPane.showMessageDialog(this, "Credenciais inválidas!");
             }
@@ -67,41 +79,32 @@ public class AuthPanel extends JPanel {
 
         btnTelaCadastro.addActionListener(e -> cardLayout.show(cards, "cadastro"));
 
-        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
-        panel.add(lblTitle, gbc);
+        panel.add(lblTitle, "span 2, align center");
+        panel.add(lblNome);
+        panel.add(txtNome, "growx");
+        panel.add(lblSenha);
+        panel.add(txtSenha, "growx");
+        panel.add(btnEntrar, "span 2, growx");
+        panel.add(btnTelaCadastro, "span 2, growx");
 
-        gbc.gridwidth = 1; gbc.gridy++;
-        panel.add(lblNome, gbc);
-        gbc.gridx = 1;
-        panel.add(txtNome, gbc);
-
-        gbc.gridx = 0; gbc.gridy++;
-        panel.add(lblSenha, gbc);
-        gbc.gridx = 1;
-        panel.add(txtSenha, gbc);
-
-        gbc.gridx = 0; gbc.gridy++; gbc.gridwidth = 2;
-        panel.add(btnEntrar, gbc);
-
-        gbc.gridy++;
-        panel.add(btnTelaCadastro, gbc);
-
-        return panel;
+        return wrapCentered(panel);
     }
 
-    private JPanel createCadastroPanel() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+    private MigPanel createCadastroPanel() {
+        MigPanel panel = new MigPanel(
+            "wrap 2, align center, gapy 15",
+            "[right][250!]",
+            ""
+        );
 
         JLabel lblTitle = new JLabel("Cadastro de Usuário");
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 24));
+        lblTitle.setFont(new Font("Arial", Font.BOLD, 28));
 
         JLabel lblNome = new JLabel("Nome:");
-        JTextField txtNome = new JTextField(15);
+        JTextField txtNome = new JTextField();
 
         JLabel lblSenha = new JLabel("Senha:");
-        JPasswordField txtSenha = new JPasswordField(15);
+        JPasswordField txtSenha = new JPasswordField();
 
         JButton btnCadastrar = new JButton("Cadastrar");
         JButton btnVoltarLogin = new JButton("Voltar para Login");
@@ -110,32 +113,33 @@ public class AuthPanel extends JPanel {
             Usuario usuario = new Usuario();
             usuario.setNome(txtNome.getText());
             usuario.setSenha(new String(txtSenha.getPassword()));
-        
+
             usuarioController.create(usuario);
             JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!");
             cardLayout.show(cards, "login");
         });
+
         btnVoltarLogin.addActionListener(e -> cardLayout.show(cards, "login"));
 
-        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
-        panel.add(lblTitle, gbc);
+        panel.add(lblTitle, "span 2, align center");
+        panel.add(lblNome);
+        panel.add(txtNome, "growx");
+        panel.add(lblSenha);
+        panel.add(txtSenha, "growx");
+        panel.add(btnCadastrar, "span 2, growx");
+        panel.add(btnVoltarLogin, "span 2, growx");
 
-        gbc.gridwidth = 1; gbc.gridy++;
-        panel.add(lblNome, gbc);
-        gbc.gridx = 1;
-        panel.add(txtNome, gbc);
+        return wrapCentered(panel);
+    }
 
-        gbc.gridx = 0; gbc.gridy++;
-        panel.add(lblSenha, gbc);
-        gbc.gridx = 1;
-        panel.add(txtSenha, gbc);
-
-        gbc.gridx = 0; gbc.gridy++; gbc.gridwidth = 2;
-        panel.add(btnCadastrar, gbc);
-
-        gbc.gridy++;
-        panel.add(btnVoltarLogin, gbc);
-
-        return panel;
+    private MigPanel wrapCentered(MigPanel form) {
+        MigPanel wrapper = new MigPanel(
+            "fill, insets 0",
+            "",
+            ""
+        );
+        wrapper.setLayout(new MigLayout("fill"));
+        wrapper.add(form, "center, growx, pushx, pushy");
+        return wrapper;
     }
 }

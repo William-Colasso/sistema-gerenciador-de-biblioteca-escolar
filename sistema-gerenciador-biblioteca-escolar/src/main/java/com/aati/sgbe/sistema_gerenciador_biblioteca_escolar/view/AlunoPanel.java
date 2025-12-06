@@ -99,8 +99,7 @@ public class AlunoPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
         add(botoes, BorderLayout.SOUTH);
 
-        // Carrega tabela ao iniciar
-        SwingUtilities.invokeLater(this::carregarTabela);
+        carregarTabela();
     }
 
     private void salvarOuAtualizarAluno(ActionEvent e) {
