@@ -1,14 +1,24 @@
 package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 import org.springframework.stereotype.Component;
 
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.controller.UsuarioController;
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.model.Usuario;
-import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.service.UsuarioService;
+
 
 @Component
 public class AuthPanel extends JPanel {
@@ -18,7 +28,7 @@ public class AuthPanel extends JPanel {
     private CardLayout cardLayout;
     private JPanel cards;
 
-    @Autowired
+    
     public AuthPanel(UsuarioController usuarioController) {
         this.usuarioController = usuarioController;
 

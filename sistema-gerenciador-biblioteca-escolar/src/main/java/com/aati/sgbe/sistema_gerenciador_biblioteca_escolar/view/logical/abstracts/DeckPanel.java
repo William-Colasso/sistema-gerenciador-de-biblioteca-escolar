@@ -1,0 +1,40 @@
+package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.logical.abstracts;
+
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.GridLayout;
+
+import javax.swing.JPanel;
+
+import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.logical.interfaces.Card;
+import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.logical.interfaces.CardLayoutable;
+
+public class DeckPanel extends JPanel implements CardLayoutable {
+
+    protected CardLayout cardLayout = new CardLayout();
+
+    protected JPanel root = new JPanel();
+
+    public DeckPanel() {
+        setLayout(new GridLayout(1,1));
+        
+        root.setLayout(cardLayout);
+        add(root);
+    }
+
+    @Override
+    public void showCard(String name) {
+        cardLayout.show(root, name);
+    }
+
+    @Override
+    public void showCard(Card card) {
+        cardLayout.show(root, card.getCardName());
+    };
+
+    @Override
+    public void addCard(Card card) {
+        root.add((Component) card, card.getCardName());
+    }
+
+}

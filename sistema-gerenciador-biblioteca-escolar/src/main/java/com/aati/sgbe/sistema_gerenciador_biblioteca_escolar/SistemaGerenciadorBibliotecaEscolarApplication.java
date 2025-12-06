@@ -1,6 +1,6 @@
 package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar;
 
-import java.awt.GraphicsEnvironment;
+
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.event.EventListener;
 
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.AuthPanel;
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.MainFrame;
+import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view.frames.LoginFrame;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 @SpringBootApplication
@@ -42,12 +42,10 @@ public class SistemaGerenciadorBibliotecaEscolarApplication {
     public void start() {
         SwingUtilities.invokeLater(() -> {
 
-            JFrame loginFrame = new JFrame("Login");
-            loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            loginFrame.setSize(400, 300);
-            loginFrame.setLocationRelativeTo(null);
+            JFrame loginFrame = new LoginFrame();
             loginFrame.add(authPanel);
             loginFrame.setVisible(true);
+            loginFrame.setLocationRelativeTo(null);
 
             // Ouvir evento de login do painel
             authPanel.addPropertyChangeListener("loginSuccess", evt -> {

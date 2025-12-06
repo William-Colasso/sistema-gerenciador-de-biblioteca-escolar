@@ -1,16 +1,23 @@
 package com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.view;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.List;
 
-import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.controller.LivroController;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+import org.springframework.stereotype.Component;
+
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.controller.EmprestimoController;
+import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.controller.LivroController;
 import com.aati.sgbe.sistema_gerenciador_biblioteca_escolar.model.Emprestimo;
 
 @Component
@@ -26,7 +33,7 @@ public class ConsultaLivroAlunoPanel extends JPanel {
     private LivroController livroController;
     private EmprestimoController emprestimoController;
 
-    @Autowired
+    
     public ConsultaLivroAlunoPanel(LivroController livroController, EmprestimoController emprestimoController) {
         this.livroController = livroController;
         this.emprestimoController = emprestimoController;
